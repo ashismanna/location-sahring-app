@@ -72,6 +72,8 @@ $(document).ready(function(e){
 
 	// save shared location both public and with friends
 	$(".btnfinalShare").on("click",function(e){
+		var this_btn = $(this)
+		this_btn.prop("disabled", true);
 		var allVals=[]
 		let can_save=false
 		let lat = $("#lat").html()
@@ -80,6 +82,7 @@ $(document).ready(function(e){
 
 		if(lat=="" || lon==""){
 			displayFlashMessage("Please select a location to procced !",false)
+			this_btn.prop("disabled", false);
 		}
 		else{
 			if ($("#public-radio-btn").is(":checked")) {
@@ -99,6 +102,7 @@ $(document).ready(function(e){
 				}
 				else{
 					displayFlashMessage("Please select user to share location !",false)
+					this_btn.prop("disabled", true);
 				}
 			}
 		}
@@ -115,12 +119,28 @@ $(document).ready(function(e){
 			    },
 			    success: function(d){
 			    	displayFlashMessage(d.message,d.flag)
+			    	location.reload();
 			    },
 			    error: function () {
 			    	displayFlashMessage("something went wrong",false)
+			    	this_btn.prop("disabled", true);
 			    }
 			})
 		}
+	})
+
+
+	$(".btnShareOptions").on("click", function(){
+		$(".publicDiv").show()
+		$(".friendsDiV").show()
+	})
+	$("#public-radio-btn").on("click", function(){
+		$(".btnfinalShare").show()
+		$(".frndShareOptions").hide()
+	})
+	$("#friends-radio-btn").on("click", function(){
+		$(".frndShareOptions").show()
+		$(".btnfinalShare").show()
 	})
 })
 

@@ -45,3 +45,6 @@
 .green {
   background-color: #5ab05a;
 }
+ .friendsDiV, .publicDiv,.frndShareOptions, .btnfinalShare {
+  display: none;
+ }

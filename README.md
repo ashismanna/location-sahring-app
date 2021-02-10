@@ -7,6 +7,13 @@ Application demonstrating a real time location sharing features with the help of
 
 ### Option 1 — Visit the hosted version
 
+```
+https://dry-river-61707.herokuapp.com/
+One can sign up there by the direct link https://dry-river-61707.herokuapp.com/users/sign_up or there are few sample users are already been present.
+
+username: user_1/2/3 
+password: tcs12345
+```
 
 
 ### Option 2 — Run it locally

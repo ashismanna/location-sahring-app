@@ -8,13 +8,9 @@ class HomeController < ApplicationController
 		all_public_shared_locations = (params[:username] and params[:username].present?) ? User.find_by_username(params[:username]).get_public_locations : current_user.get_public_locations
 		all_location_shared_with_current_user = current_user.get_location_shared_with_current_user
 
-		puts "********************************************"
 		all_public_shared_locations_hash = Hash.new
 		all_location_shared_with_current_user_hash = Hash.new
-		puts "********************************************"
 
-		puts all_public_shared_locations.inspect
-		puts all_location_shared_with_current_user_hash.inspect
 
 		all_public_shared_locations.each_with_index{ |location,index| all_public_shared_locations_hash["public_location_#{index+1}"] = {
 			"lon" => location.longitude,
@@ -32,7 +28,6 @@ class HomeController < ApplicationController
     		"location_shared_with_user" => all_location_shared_with_current_user_hash
     	}
 
-        puts data.inspect
         respond_to do |format|
           format.json{render :json=>data}
         end
@@ -54,14 +49,12 @@ class HomeController < ApplicationController
 		if params[:latitude] != "" and params[:longitude] != ""
 			location = Location.create!(:latitude=>params[:latitude], :longitude=>params[:longitude])
 			if params[:is_public] and params[:is_public]=="true"
-				puts "=========i'm in if"
 				shared_loc = SharedLocation.new
 				shared_loc.user_id = current_user.id
 				shared_loc.location_id = location.id
 				shared_loc.is_public =  true
 				flag = shared_loc.save ? true : false
 			else
-				puts "i'm in else====================="
 				user_ids = params[:users].split(",")
 				user_ids.map{|u|
 					share_location = SharedLocation.new

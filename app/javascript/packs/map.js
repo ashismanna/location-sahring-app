@@ -95,7 +95,6 @@ $(document).ready(function(e){
 						allVals.push($(this).val());
 					}
 	     		})
-				console.log(`${allVals.length}=====${allVals}`)
 				if(allVals.length > 0){
 					users = allVals.join(",")
 					can_save = true
@@ -128,13 +127,13 @@ $(document).ready(function(e){
 })
 
 map.on("click",function(e){
+	let page_title = $("#pagetitle").attr("title");
 	if(page_title != "Share Location"){
 		e.preventDefault()
         return false
 	}
 	else{
 		var lonlat = ol.proj.transform(e.coordinate, 'EPSG:3857', 'EPSG:4326')
-		console.log(lonlat)
 
 		// remove previous marker if present
 		remove_previous_marker(map.getLayers())

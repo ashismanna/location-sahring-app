@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 	end
 
 	def get_all_latlong_for_current_user
-		all_public_shared_locations = (params[:username] and params[:username].present?) ? User.find_by_username(params[:username]).get_public_locations : current_user.get_public_locations
+		all_public_shared_locations = (params[:username] and params[:username].present?) ? User.find_by_username(params[:username]).get_public_locations : current_user.get_public_locations(true)
 		all_location_shared_with_current_user = current_user.get_location_shared_with_current_user
 
 		all_public_shared_locations_hash = Hash.new

@@ -1,5 +1,4 @@
-const page_title = $("#pagetitle").attr("title");
-
+// const page_title = $("#pagetitle").attr("title");
 
 const map = new ol.Map({
 	target: 'map',
@@ -35,7 +34,7 @@ $(document).ready(function(e){
 		    		let longlat = []
 		    		longlat[0] = parseFloat(value["lon"])
 		    		longlat[1] = parseFloat(value["lat"])
-		    		add_marker(longlat)
+		    		add_marker_for_locationSharedUser(longlat)
 		    	})
 		    },
 		    error: function () {
@@ -44,7 +43,6 @@ $(document).ready(function(e){
 	}
 	else if(page_title=="User Page"){
 		let username = $("#pagetitle").attr("username")
-		alert(page_title)
 		$.ajax({
 		    url: "get_all_latlong_for_current_user",
 		    method: "get",
@@ -179,6 +177,33 @@ function add_marker(lonlat){
 	})
 	map.addLayer(markerLayer)
 }
+
+function add_marker_for_locationSharedUser(lonlat){
+	const iconFeature = new ol.Feature({
+	geometry: new ol.geom.Point(ol.proj.fromLonLat(lonlat)),
+	name: 'marker-icon',
+	});
+	const markerLayer =	new ol.layer.Vector({
+		source: new ol.source.Vector({
+			features: [iconFeature]
+		}),
+		style: new ol.style.Style({
+			image: new ol.style.Icon({
+				anchor: [0.5, 46],
+				anchorXUnits: 'fraction',
+				anchorYUnits: 'pixels',
+				src: 'https://openlayers.org/en/latest/examples/data/icon.png',
+				color: '#FFC300'
+			})
+		}),
+		title: "marker",
+		visible: true
+	})
+	map.addLayer(markerLayer)
+}
+
+
+
 
 // flash message mehod
 function displayFlashMessage(message, flag) {

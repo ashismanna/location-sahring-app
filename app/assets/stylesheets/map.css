@@ -35,3 +35,13 @@
 .flash-message-container.error {
   background: #b72532;
 }
+
+.bg-purple {
+    background-color: var(--purple);
+}
+.yellow {
+  background-color: #e3e322d4;
+}
+.green {
+  background-color: #5ab05a;
+}

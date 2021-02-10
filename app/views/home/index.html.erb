@@ -14,11 +14,14 @@
     <div class="tab-content">
         <div id="tab-1" class="container tab-pane active"><br>
             <div class="map" id="map"></div>
+            <div class="row">
+              <p><h3>Please note that, <span class="yellow">yellow</span> coloured marker denotes the location(s) shared with you by other users and the <span class="green">green</span> ones are the location shared by you.</h3></p>
+            </div>
         </div>
         <div id="tab-2" class="container tab-pane"><br>
           <div>
             <%@all_users.each do |user|%>
-              <a href="/<%=user.username%>"><%=user.fullname%></a>
+              <a href="/<%=user.username%>" target="_blannk"><h3><%=user.fullname%></h3></a></br>
             <%end%>
           </div>
         </div>

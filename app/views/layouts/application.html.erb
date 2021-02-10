@@ -17,10 +17,10 @@
   </head>
   <body>
     <% if !current_user.nil? %>
-        <header class="row">
+        <header class="row bg-purple">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-sm bg-light text-right">
-                    <%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %>
+                    <%= link_to destroy_user_session_path, method: :delete do %><h2>Log out</h2><% end %>
                 </nav>
             </div>
         </header>

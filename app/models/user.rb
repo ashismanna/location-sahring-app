@@ -10,8 +10,8 @@ class User < ApplicationRecord
   	(user and user.present?) ? self.where("id not in (?)",user.id) : []
   end
 
-	def get_public_locations
-		shared_locations = self.shared_locations.where(:is_public=>true) if self.shared_locations
+	def get_public_locations(all=nil)
+		shared_locations = (all==true) ? self.shared_locations : self.shared_locations.where(:is_public=>true) #if self.shared_locations
     (shared_locations and shared_locations.present?) ? Location.where(:id => shared_locations.collect(&:location_id)) : []
 	end
 

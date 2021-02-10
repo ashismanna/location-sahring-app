@@ -21,7 +21,7 @@
         <div id="tab-2" class="container tab-pane"><br>
           <div>
             <%@all_users.each do |user|%>
-              <a href="/<%=user.username%>" target="_blannk"><h3><%=user.fullname%></h3></a></br>
+              <a href="/<%=user.username%>" target="_blannk"><h3><%= user.fullname%></h3></a></br>
             <%end%>
           </div>
         </div>

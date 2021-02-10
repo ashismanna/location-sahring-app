@@ -21,7 +21,10 @@ class User < ApplicationRecord
   end
 
   def fullname
-    self.firstname.capitalize+" "+self.lastname.capitalize 
+    fname = ""
+    fname += self.firstname.capitalize if self.firstname
+    fname += " "+self.lastname.capitalize if self.lastname
+    fname
   end
 
   def self.find_for_database_authentication(conditions={})

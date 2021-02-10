@@ -24,4 +24,9 @@ class User < ApplicationRecord
     self.firstname.capitalize+" "+self.lastname.capitalize 
   end
 
+  def self.find_for_database_authentication(conditions={})
+  find_by(username: conditions[:email]) || find_by(email: conditions[:email])
+end
+
+
 end

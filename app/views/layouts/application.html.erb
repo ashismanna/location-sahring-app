@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MapProject<%=" - #{@page_title}"%></title>
+    <title>MapProject<%=" #{@page_title}"%></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,15 +16,19 @@
  
   </head>
   <body>
-    <header class="row">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-sm bg-light text-right">
-                <%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %>
-            </nav>
-        </div>
-    </header>
+    <% if !current_user.nil? %>
+        <header class="row">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-sm bg-light text-right">
+                    <%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %>
+                </nav>
+            </div>
+        </header>
+    <%end%>
     <% if current_user.nil? %>
-        <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+        <%if action_name != "new"%>
+            <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+        <%end%>
     <% else %>
         <h2>Welcome <strong><%=current_user.username%></strong> to Location Sharing App</h2>
     <%end%>

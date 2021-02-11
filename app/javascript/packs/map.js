@@ -1,5 +1,3 @@
-// const page_title = $("#pagetitle").attr("title");
-
 const map = new ol.Map({
 	target: 'map',
 	layers: [
@@ -51,19 +49,12 @@ $(document).ready(function(e){
 		    },
 		    success: function(d){
 		    	let public_shared_locations = d.public_shared_locations
-		    	// let location_shared_with_user = d.location_shared_with_user
 		    	$.each( public_shared_locations, function( key, value ) {
 		    		let longlat = []
 		    		longlat[0] = parseFloat(value["lon"])
 		    		longlat[1] = parseFloat(value["lat"])
 		    		add_marker(longlat)
 		    	})
-		    	// $.each( location_shared_with_user, function( key, value ) {
-		    	// 	let longlat = []
-		    	// 	longlat[0] = parseFloat(value["lon"])
-		    	// 	longlat[1] = parseFloat(value["lat"])
-		    	// 	add_marker(longlat)
-		    	// })
 		    },
 		    error: function () {
 		    }
@@ -73,7 +64,7 @@ $(document).ready(function(e){
 	// save shared location both public and with friends
 	$(".btnfinalShare").on("click",function(e){
 		var this_btn = $(this)
-		this_btn.prop("disabled", true);
+		this_btn.prop("disabled", true)
 		var allVals=[]
 		let can_save=false
 		let lat = $("#lat").html()
@@ -82,7 +73,7 @@ $(document).ready(function(e){
 
 		if(lat=="" || lon==""){
 			displayFlashMessage("Please select a location to procced !",false)
-			this_btn.prop("disabled", false);
+			this_btn.prop("disabled", false)
 		}
 		else{
 			if ($("#public-radio-btn").is(":checked")) {
@@ -102,7 +93,7 @@ $(document).ready(function(e){
 				}
 				else{
 					displayFlashMessage("Please select user to share location !",false)
-					this_btn.prop("disabled", true);
+					this_btn.prop("disabled", false)
 				}
 			}
 		}
@@ -119,11 +110,13 @@ $(document).ready(function(e){
 			    },
 			    success: function(d){
 			    	displayFlashMessage(d.message,d.flag)
-			    	location.reload();
+			    	setTimeout(function () {
+			    	 location.reload()},3200
+			    	)
 			    },
 			    error: function () {
 			    	displayFlashMessage("something went wrong",false)
-			    	this_btn.prop("disabled", true);
+			    	this_btn.prop("disabled", false)
 			    }
 			})
 		}

@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :shared_locations
+  validates :email, :uniqueness => true
+  validates :username, :uniqueness => true
 
   def self.get_all_users(user)
   	(user and user.present?) ? self.where("id not in (?)",user.id) : []

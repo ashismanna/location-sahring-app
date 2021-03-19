@@ -17,7 +17,7 @@ $(document).ready(function(e){
 	let page_title = $("#pagetitle").attr("title");
 	if(page_title=="Home"){
 		$.ajax({
-		    url: "get_all_latlong_for_current_user",
+		    url: "/users/get_all_latlong_details",
 		    method: "get",
 		    success: function(d){
 		    	let public_shared_locations = d.public_shared_locations
@@ -42,7 +42,7 @@ $(document).ready(function(e){
 	else if(page_title=="User Page"){
 		let username = $("#pagetitle").attr("username")
 		$.ajax({
-		    url: "get_all_latlong_for_current_user",
+		    url: "/users/get_all_latlong_details",
 		    method: "get",
 		    data: {
 		    	username: username
@@ -99,7 +99,7 @@ $(document).ready(function(e){
 		}
 		if(can_save){
 			$.ajax({
-			    url: "save_shared_location",
+			    url: "/locations/save_shared_location",
 			    method: "post",
 			    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 			    data: {

@@ -8,8 +8,9 @@ class User < ApplicationRecord
   validates :email, :uniqueness => true
   validates :username, :uniqueness => true
 
+
   def self.get_all_users(user)
-  	(user and user.present?) ? self.where("id not in (?)",user.id) : []
+  	(user.present?) ? self.where("id != (?)",user.id) : []
   end
 
 	def get_public_locations(all=nil)

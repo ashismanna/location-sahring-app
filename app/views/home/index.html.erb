@@ -21,12 +21,12 @@
         <div id="tab-2" class="container tab-pane"><br>
           <div>
             <%@all_users.each do |user|%>
-              <a href="/<%=user.username%>" target="_blannk"><h3><%= user.fullname%></h3></a></br>
+              <a href="users/<%=user.username%>" target="_blannk"><h3><%= user.fullname%></h3></a></br>
             <%end%>
           </div>
         </div>
 
-        <%= link_to share_location_path,:target=>"blank" do %>
+        <%= link_to share_location_locations_path,:target=>"blank" do %>
             <button class="btn btn-success btn md" title="click to share location">Share Location</button>
         <%end%>
     </div>

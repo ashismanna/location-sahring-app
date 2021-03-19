@@ -36,7 +36,7 @@
     <p class = "alert" ><%#= alert %></p> -->
     <%= yield %>
     <%= javascript_pack_tag 'map' %>
-    <div id=pagetitle type="hidden" title="<%=@page_title%>" username="<%=(params[:username] and params[:username].present? ? params[:username] : "")%>"=></div>
+    <div id=pagetitle type="hidden" title="<%=@page_title%>" username="<%=(params[:id] and params[:id].present? ? params[:id] : "")%>"=></div>
   </body>
 
 </html>

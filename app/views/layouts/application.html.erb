@@ -30,7 +30,9 @@
             <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
         <%end%>
     <% else %>
-        <h2>Welcome <strong><%=current_user.fullname%></strong> to Location Sharing App</h2>
+        <h2>
+            <%= get_welcome_message(@user) %>
+        </h2>
     <%end%>
     <!-- <p class = "notice" ><%#= notice %> </p>
     <p class = "alert" ><%#= alert %></p> -->
